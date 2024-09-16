@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink } from 'react-router-dom';
-import styles from './TabBar.module.css'; // Создайте этот файл для стилей
+import styles from './TabBar.module.css';
 
 export function TabBar() {
 	return (

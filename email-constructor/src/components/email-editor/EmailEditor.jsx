@@ -1,58 +1,84 @@
-import { Bold, Eraser, Italic, Underline } from 'lucide-react'
+import { Bold, Eraser, Italic, Strikethrough, Underline } from 'lucide-react'
+import React, {useRef, useState} from 'react'
 import styles from './EmailEditor.module.css'
-
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import parse from 'html-react-parser'
-import { emailService } from '../../services/email.service'
-import { useEditor } from './useEditor'
 
 export function EmailEditor() {
-  const { applyFormat, text, updateSelection, setText, textRef } = useEditor()
 
-  const queryClient = useQueryClient()
+    const [text, setText] = useState("Hey! \n Lorem  Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n Illum earum expedita quia nesciunt soluta vero incidunt!\nInventore nam ducimus iste natus. Soluta laboriosam,\nrepellendus neque nemo porro at? Est, dolorem!");
 
-  const { mutate, isPending } = useMutation({
-    mutationKey: ['create email'],
-    mutationFn: () => emailService.sendEmail(text),
-    onSuccess() {
-      setText('')
-      queryClient.refetchQueries({ queryKey: ['email list'] })
-    },
-  })
+    const [selectionStart, setSelectionStart] = useState(0)
+    const [selectionEnd, setSelectionEnd] = useState(0)
 
-  return (
-      <div>
-        <h1>Email editor</h1>
-        {text && <div className={styles.preview}>{parse(text)}</div>}
-        <div className={styles.card}>
-				<textarea
-                    ref={textRef}
+    const textRef = useRef (null)
+
+    const updateSelection = () => {
+        if (!textRef.current) return
+        setSelectionStart(textRef.current.selectionStart)
+        setSelectionEnd(textRef.current.selectionEnd)
+    }
+
+    const applyFormat = (type) => {
+
+        const beforeText = text.substring(0, selectionStart)
+        const selectedText = text.substring(selectionStart, selectionEnd)
+        const afterText = text.substring(selectionEnd)
+
+        setText(beforeText + applyStyle(type, selectedText) + afterText)
+
+        if(selectedText.length === 0) return
+    }
+
+    const applyStyle = (type, selectedText) => {
+        switch (type) {
+            case 'bold':
+                selectedText = '<b>' + selectedText + '</b>';
+                break;
+            case 'italic':
+                selectedText = '<i>' + selectedText + '</i>';
+                break;
+            case 'underline':
+                selectedText = '<u>' + selectedText + '</u>';
+                break;
+        }
+        return selectedText;
+    }
+
+    return (
+        <>
+            <h1>Почта</h1>
+            <div className={styles.preview}>{parse(text)}</div>
+            <div className={styles.card}>
+
+          <textarea ref={textRef}
                     className={styles.editor}
                     spellCheck='false'
                     onSelect={updateSelection}
-                    value={text}
                     onChange={e => setText(e.target.value)}
-                />
-          <div className={styles.actions}>
-            <div className={styles.tools}>
-              <button onClick={() => setText('')}>
-                <Eraser size={17} />
-              </button>
-              <button onClick={() => applyFormat('bold')}>
-                <Bold size={17} />
-              </button>
-              <button onClick={() => applyFormat('italic')}>
-                <Italic size={17} />
-              </button>
-              <button onClick={() => applyFormat('underline')}>
-                <Underline size={17} />
-              </button>
+                    value={text}>
+            {text}
+          </textarea>
+                <div className={styles.actions}>
+                    <div className={styles.tools}>
+                        <button onClick={() => setText('')}>
+                            <Eraser size={18}/>
+                        </button>
+                        <button onClick={() => applyFormat('bold')}>
+                            <Bold size={18}/>
+                        </button>
+                        <button>
+                            <Italic size={18}/>
+                        </button>
+                        <button>
+                            <Underline size={18}/>
+                        </button>
+                        <button>
+                            <Strikethrough size={18}/>
+                        </button>
+                    </div>
+                    <button>Отправить</button>
+                </div>
             </div>
-            <button disabled={isPending} onClick={() => mutate()}>
-              Send now
-            </button>
-          </div>
-        </div>
-      </div>
-  )
+        </>
+    )
 }
