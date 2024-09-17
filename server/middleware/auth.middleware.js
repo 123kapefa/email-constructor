@@ -10,9 +10,9 @@ export const protect = asyncHandler(async (req, res, next) => {
 	if (req.headers.authorization?.startsWith('Bearer')) {
 		token = req.headers.authorization.split(' ')[1]
 
-		const decoded = jwt.verify(token, process.env.JWT_SECRET)
+		const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
 
-		const userFound = await prisma.user.findUnique({
+		const userFound = await prisma.users.findUnique({
 			where: {
 				id: decoded.userId
 			},

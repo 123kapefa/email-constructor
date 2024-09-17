@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now()) @map("created-at")
   updatedAt DateTime @updatedAt @map("updated-at")
@@ -15,4 +15,15 @@ model User {
   email String @unique
   password String
   name String
+}
+
+model Emails {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created-at")
+  updatedAt DateTime @updatedAt @map("updated-at")
+
+  emailTo String @map("email-to")
+  emailFrom String @map("email-from")
+  title String
+  content String
 }
