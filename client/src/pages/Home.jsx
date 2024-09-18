@@ -4,7 +4,6 @@ import {TabBar} from "../components/tab-bar/TabBar.jsx";
 import styles from "../main.module.css";
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import { Provider } from '../Provider.jsx'
 
 const router = createBrowserRouter([
     {
@@ -29,9 +28,7 @@ const router = createBrowserRouter([
 
 
 export function Home() {
-    return (
-            <RouterProvider router={router} />
-    );
+    return <RouterProvider router={router} />;
 }
 
 export function NavbarWrapper() {
