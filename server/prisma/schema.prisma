@@ -12,9 +12,10 @@ model User {
   createdAt DateTime @default(now()) @map("created-at")
   updatedAt DateTime @updatedAt @map("updated-at")
 
-  login          String
-  email          String  @unique
-  password       String
+  login    String
+  email    String @unique
+  password String
+
   sentEmails     Email[] @relation("SentEmails")
   receivedEmails Email[] @relation("ReceivedEmails")
 

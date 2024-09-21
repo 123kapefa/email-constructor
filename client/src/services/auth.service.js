@@ -1,4 +1,4 @@
-import { Cookie } from 'lucide-react'
+import Cookie from 'js-cookie'
 import { $axios } from '../api.js'
 import { TOKEN } from '../app.constans.js'
 
@@ -15,6 +15,8 @@ class AuthService {
 			
 			return data
 		} catch (error) {
+			
+			console.log(error)
 			throw new Error(error)
 		}
 	}
