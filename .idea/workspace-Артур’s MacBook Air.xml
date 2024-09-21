@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="70e585ee-52b9-4789-a4be-31201ec1106f" name="Changes" comment="дописал серверную чать. Осталось все связать с клиентом.">
+      <change afterPath="$PROJECT_DIR$/client/src/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app.constans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/assets/styles/_animations.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/assets/styles/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/Layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/Layout.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/action-menu/ActionMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/action-menu/ActionMenu.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/action-menu/Menu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/action-menu/menu.data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/header/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/header/Header.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/auth/Auth.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/auth/Auth.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/auth/useAuthPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/home/Home.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/not-found/NotFound.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/layout/screens/profile/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui-elements/Loader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui-elements/button/Button.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui-elements/button/Button.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui-elements/field/Field.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui-elements/field/Field.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useAuth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useCheckToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useOnClickOutside.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/providers/AuthProvider.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/routes/Router.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/routes/routes.data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/services/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/email-editor/EmailEditor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/screens/email-editor/EmailEditor.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/email-editor/EmailEditor.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/screens/email-editor/EmailEditor.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/email-list/EmailList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/screens/email-list/EmailList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/email-list/EmailList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/screens/email-list/EmailList.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/tab-bar/TabBar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/tab-bar/TabBar.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/screens/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/auth/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/auth/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="HW_07" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2m7Q8Oy7CAkNfjxIWnGKp47KVG0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;HW__08&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/artursokolov/Library/CloudStorage/OneDrive-Личная/_SHAG_/React/Homework/email-editor/server/mail&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/mail" />
+      <recent name="C:\Users\123ka\OneDrive\_SHAG_\React\Homework\email-editor\email-constructor\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components/ui-elements/field" />
+      <recent name="$PROJECT_DIR$/client/src/components/ui-elements/button" />
+      <recent name="$PROJECT_DIR$/client/src/components/ui-elements" />
+      <recent name="$PROJECT_DIR$/client/src/components/layout/screens/home" />
+      <recent name="$PROJECT_DIR$/client/src/components/layout/screens" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70e585ee-52b9-4789-a4be-31201ec1106f" name="Changes" comment="" />
+      <created>1726424974706</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726424974706</updated>
+      <workItem from="1726424975751" duration="5059000" />
+      <workItem from="1726476257141" duration="5869000" />
+    </task>
+    <task id="LOCAL-00001" summary="инит">
+      <option name="closed" value="true" />
+      <created>1726476730847</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726476730847</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="инит" />
+    <MESSAGE value="добавил сервер" />
+    <MESSAGE value="добавил сервер 2" />
+    <MESSAGE value="добавил возможность регистрироваться и логиниться." />
+    <MESSAGE value="дописал серверную чать. Осталось все связать с клиентом." />
+    <option name="LAST_COMMIT_MESSAGE" value="дописал серверную чать. Осталось все связать с клиентом." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/hooks/useOnClickOutside.js</url>
+          <line>11</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/layout/screens/auth/useAuthPage.js</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
