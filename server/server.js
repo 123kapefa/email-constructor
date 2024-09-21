@@ -2,6 +2,7 @@ import 'colors'
 import dotenv from 'dotenv'
 import express from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 import { prisma } from './prisma.js'
 
 import { errorHandler, notFound } from './middleware/error.middleware.js'
@@ -18,6 +19,7 @@ async function main() {
 	if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 
 	app.use(express.json())
+	app.use(cors())
 	app.use('/api/auth', authRoutes)
 	app.use('/api/users', userRoutes)
 	app.use('/api/emails', emailRoutes)
