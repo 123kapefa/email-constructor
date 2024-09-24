@@ -4,16 +4,27 @@ import { TOKEN } from '../app.constans.js'
 
 
 class AuthService {
-	async main(email, password, type) {
+	async main(type, email, password, login = '') {
 		try {
-			const {data} = await $axios.post(`/auth/${type}`, {
+			if (type === 'login') {
+				const {data} = await $axios.post(`/auth/${type}`, {
 				email,
 				password
 			})
 			
 			if (data.token) Cookie.set(TOKEN, data.token)
-			
 			return data
+			
+			} else {
+				const {data} = await $axios.post(`/auth/${type}`, {
+				login,
+				email,
+				password
+			})
+				
+			if (data.token) Cookie.set(TOKEN, data.token)
+			return data
+			}
 		} catch (error) {
 			
 			console.log(error)

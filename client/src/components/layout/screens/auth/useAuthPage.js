@@ -8,6 +8,7 @@ import { useAuth } from '../../../../hooks/useAuth.js'
 import AuthService from '../../../../services/auth.service.js'
 
 export const useAuthPage = () => {
+	
 	const [type, setType] = useState('login')
 
 	const {
@@ -16,7 +17,7 @@ export const useAuthPage = () => {
 		formState: { errors },
 		reset
 	} = useForm({
-		mode: 'onChange'
+		mode: 'onSubmit'
 	})
 
 	const { isAuth, setIsAuth } = useAuth()
@@ -27,20 +28,26 @@ export const useAuthPage = () => {
 			navigate('/')
 		}
 	}, [isAuth])
-
+	
 	const { mutate, isLoading } = useMutation({
 		mutationKey: ['auth'],
-		mutationFn: ({ email, password }) => AuthService.main(email, password, type),
+		mutationFn: ({ email, password, login }) => AuthService.main(type, email, password, login),
 		onSuccess: () => {
 				setIsAuth(true)
 				reset()
 		}
 	})
 
-	const onSubmit = data => {
+	const onSubmitLogin = data => {
+		setType('login')
 		mutate(data)
 	}
 
+	const onSubmitRegister = data => {
+		setType('register')
+		mutate(data)
+	}
+	
 	return useMemo(
 		() => ({
 			setType,
@@ -48,7 +55,9 @@ export const useAuthPage = () => {
 			handleSubmit,
 			errors,
 			isLoading,
-			onSubmit
+			onSubmitLogin,
+			onSubmitRegister,
+			type
 		}),
 		[errors, isLoading]
 	)

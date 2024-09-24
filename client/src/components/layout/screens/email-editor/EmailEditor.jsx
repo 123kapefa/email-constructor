@@ -1,13 +1,24 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Bold, Eraser, Italic, Strikethrough, Underline } from 'lucide-react'
+import {
+    Bold,
+    Eraser,
+    Italic,
+    Strikethrough,
+    Underline
+} from 'lucide-react'
+
 import React, {useRef, useState} from 'react'
-//import { emailService } from '../../../../services/email.service.js'
-import styles from './EmailEditor.module.css'
+import { useAuth } from '../../../../hooks/useAuth.js'
+import Layout from '../../Layout.jsx'
+import styles from './EmailEditor.module.scss'
 import parse from 'html-react-parser'
 
 export function EmailEditor() {
+    
+    const { userId, setUserId } = useAuth()
 
     const [text, setText] = useState("Hey! \n Lorem  Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n Illum earum expedita quia nesciunt soluta vero incidunt!\nInventore nam ducimus iste natus. Soluta laboriosam,\nrepellendus neque nemo porro at? Est, dolorem!");
+    
+    const [userTo, setUserTo] = useState('');
 
     const [selectionStart, setSelectionStart] = useState(0)
     const [selectionEnd, setSelectionEnd] = useState(0)
@@ -46,25 +57,20 @@ export function EmailEditor() {
         return selectedText;
     }
     
-    // const queryClient = useQueryClient()
-    //
-    // const { mutate, isPending } = useMutation({
-    //     mutationKey: ['create email'],
-    //     mutationFn: () => emailService.sendEmail(text),
-    //     onSuccess() {
-    //       setText('')
-    //       queryClient.refetchQueries({ queryKey: ['email list'] })
-    //     },
-	  // })
 
     return (
-        <>
+      <Layout>
             <h1>Почта</h1>
+            <div className={styles.senderBlock}>
+                <p>Получатель</p>
+                <textarea className={styles.editorUser} rows='1' maxLength='40' cols='10' wrap='off' spellCheck='false'onChange={e => setUserTo(e.target.value)} value={userTo} >
+                </textarea>
+            </div>
             <div className={styles.preview}>{parse(text)}</div>
             <div className={styles.card}>
 
           <textarea ref={textRef}
-                    className={styles.editor}
+                    className={styles.editorMassage}
                     spellCheck='false'
                     onSelect={updateSelection}
                     onChange={e => setText(e.target.value)}
@@ -93,6 +99,6 @@ export function EmailEditor() {
                     <button>Отправить</button>
                 </div>
             </div>
-        </>
+      </Layout>
     )
 }

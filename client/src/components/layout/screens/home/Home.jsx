@@ -1,5 +1,5 @@
 import Layout from '../../Layout.jsx'
-import styles from "../../../../main.module.css";
+import styles from "./Home.module.scss";
 import React from "react";
 
 export function Home() {

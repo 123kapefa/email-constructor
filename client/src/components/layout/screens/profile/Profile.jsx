@@ -1,8 +1,13 @@
- 
- 
- const Profile = () => {
+import Layout from '../../Layout.jsx'
+
+
+const Profile = () => {
 	return (
-		<div>Profile</div>
+		<div>
+			<Layout>
+				Profile
+			</Layout>
+		</div>
 	)
  }
  

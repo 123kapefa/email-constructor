@@ -1,46 +1,98 @@
 import asyncHandler from 'express-async-handler'
 
 import { prisma } from '../prisma.js'
-import { UserFields } from '../utils/user.utils.js'
+import { EmailFields, UserFields, UserMessages } from '../utils/user.utils.js'
 
-// @desc    Create email
-// @route   POST /api/mails
+// @desc    Send new email
+// @route   POST /api/mails/sendEmail/:id
 // @access  Private
-export const createNewEmail = asyncHandler(async (req, res) => {
-	const { emailTo, emailFrom, title, content } = req.body
+export const sendNewEmail = asyncHandler(async (req, res) => {
+	const { title, context } = req.body
 	
-	// const userTo = await prisma.user.findUnique({
-	// 		where: {
-	// 			email: emailTo
-	// 		},
-	// 		select: UserFields
-	// })
-	//
-	// const userFrom = await prisma.user.findUnique({
-	// 		where: {
-	// 			email: emailFrom
-	// 		},
-	// 		select: UserFields
-	// })
-	//
-	// if (!userTo)  {
-	// 	res.status(400)
-	// 	throw new Error('Неправильно указан получатель!')
-	// }
-	//
-	// if (!userFrom)  {
-	// 	res.status(400)
-	// 	throw new Error('Неправильно указан отправитель!')
-	// }
-	//
-	// const email = await prisma.email.create({
-	// 	data: {
-	// 		emailTo: userTo.id, emailFrom: userFrom.id, title, content
+	console.log(req.params.userIdFrom, req.params.userEmailTo)
+	
+	const userFrom = await prisma.user.findUnique({
+			where: {
+				id: +req.params.userIdFrom
+			},
+			select: UserFields
+	})
+	
+		console.log({userFrom})
+	
+	const userTo = await prisma.user.findUnique({
+			where: {
+				email: req.params.userEmailTo
+			},
+			select: UserFields
+	})
+
+	console.log({userTo})
+	console.log({title, context})
+	
+	if (!userTo)  {
+		res.status(400)
+		throw new Error('Неправильно указан получатель!')
+	}
+
+	if (!userFrom)  {
+		res.status(400)
+		throw new Error('Неправильно указан отправитель!')
+	}
+
+	console.log(userFrom.id, userTo.id)
+	
+	const email = await prisma.email.create({
+		data: {
+			emailTo: userTo.id,
+			emailFrom: userFrom.id,
+			title: title,
+			context: context
+		},
+		select: EmailFields
+	})
+	
+	console.log(email)
+
+	res.json(email)
+})
+
+// @desc    get emails
+// @route   Get /api/mails/getEmails
+// @access  Private
+export const getEmails = asyncHandler(async (req, res) => {
+	
+	console.log(Number(req.params.id))
+	
+	const userMessages = await prisma.user.findUnique({
+		where: {
+			id: +req.params.id
+		},
+		include: {
+			sentEmails: true,
+			receivedEmails: true,
+		}
+	})
+	
+	// const userMessages = await prisma.email.findMany({
+	// 	orderBy: {
+	// 		createdAt: 'desc'
+	// 	},
+	// 	include: {
+	// 		e
 	// 	}
-	//
+	// 		where: {
+	// 			id: +req.params.id
+	// 		},
+	// 		select: UserMessages
 	// })
-	//
-	// res.json(email)
+
+	console.log(userMessages)
 	
-	res.json(req.body)
+	if (!userMessages)  {
+		res.status(400)
+		throw new Error('Неправильно указан получатель!')
+	}
+
+	res.json(userMessages)
 })
