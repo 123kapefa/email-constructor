@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 import { $axios } from '../api.js'
-import { TOKEN } from '../app.constans.js'
+import { TOKEN, UID } from '../app.constans.js'
 
 
 class AuthService {
@@ -12,6 +12,8 @@ class AuthService {
 				password
 			})
 			
+				Cookie.set(UID, data.user.id)
+				
 			if (data.token) Cookie.set(TOKEN, data.token)
 			return data
 			
@@ -22,8 +24,11 @@ class AuthService {
 				password
 			})
 				
+				Cookie.set(UID, data.user.id)
+			
 			if (data.token) Cookie.set(TOKEN, data.token)
-			return data
+				return data
+				
 			}
 		} catch (error) {
 			

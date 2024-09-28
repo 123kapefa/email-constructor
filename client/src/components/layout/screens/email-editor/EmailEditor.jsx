@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
     Bold,
     Eraser,
@@ -8,95 +9,87 @@ import {
 
 import React, {useRef, useState} from 'react'
 import { useAuth } from '../../../../hooks/useAuth.js'
+import { emailService } from '../../../../services/email.service.js'
 import Layout from '../../Layout.jsx'
 import styles from './EmailEditor.module.scss'
 import parse from 'html-react-parser'
+import { useEditor } from './useEditor.js'
 
 export function EmailEditor() {
     
-    const { userId, setUserId } = useAuth()
-
-    const [text, setText] = useState("Hey! \n Lorem  Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n Illum earum expedita quia nesciunt soluta vero incidunt!\nInventore nam ducimus iste natus. Soluta laboriosam,\nrepellendus neque nemo porro at? Est, dolorem!");
+    const { userId } = useAuth()
     
-    const [userTo, setUserTo] = useState('');
+    const {
+        textUserTo,
+        setTextUserTo,
+        textTitle,
+        setTextTitle,
+        textContext,
+        setTextContext,
+        textRef,
+        applyFormat,
+        updateSelection
+    } = useEditor()
 
-    const [selectionStart, setSelectionStart] = useState(0)
-    const [selectionEnd, setSelectionEnd] = useState(0)
-
-    const textRef = useRef (null)
-
-    const updateSelection = () => {
-        if (!textRef.current) return
-        setSelectionStart(textRef.current.selectionStart)
-        setSelectionEnd(textRef.current.selectionEnd)
-    }
-
-    const applyFormat = (type) => {
-
-        const beforeText = text.substring(0, selectionStart)
-        const selectedText = text.substring(selectionStart, selectionEnd)
-        const afterText = text.substring(selectionEnd)
-
-        setText(beforeText + applyStyle(type, selectedText) + afterText)
-
-        if(selectedText.length === 0) return
-    }
-
-    const applyStyle = (type, selectedText) => {
-        switch (type) {
-            case 'bold':
-                selectedText = '<b>' + selectedText + '</b>';
-                break;
-            case 'italic':
-                selectedText = '<i>' + selectedText + '</i>';
-                break;
-            case 'underline':
-                selectedText = '<u>' + selectedText + '</u>';
-                break;
-        }
-        return selectedText;
-    }
+    const queryClient = useQueryClient()
     
-
+    const { mutate, isPending } = useMutation({
+		mutationKey: ['send email'],
+		mutationFn: () => emailService.sendEmail(userId, textUserTo, textTitle, textContext),
+		onSuccess() {
+      setTextUserTo('')
+      setTextTitle('')
+			setTextContext('')
+      
+			queryClient.refetchQueries({ queryKey: ['email list'] })
+		},
+	})
+    
     return (
       <Layout>
             <h1>Почта</h1>
             <div className={styles.senderBlock}>
                 <p>Получатель</p>
-                <textarea className={styles.editorUser} rows='1' maxLength='40' cols='10' wrap='off' spellCheck='false'onChange={e => setUserTo(e.target.value)} value={userTo} >
+                <textarea className={styles.editorUser} rows='1' maxLength='40' cols='10' wrap='off' spellCheck='false'onChange={e => setTextUserTo(e.target.value)} value={textUserTo} placeholder='Enter email'>
                 </textarea>
             </div>
-            <div className={styles.preview}>{parse(text)}</div>
+            <div className={styles.preview}>{parse(textContext)}</div>
             <div className={styles.card}>
-
+                <textarea className={styles.editorTitle}
+                    rows='1'
+                    cols='10'
+                    maxLength='74'
+                    wrap='off'
+                    spellCheck='false'
+                    onChange={e => setTextTitle(e.target.value)} value={textTitle} placeholder="Enter title" >
+                </textarea>
           <textarea ref={textRef}
                     className={styles.editorMassage}
                     spellCheck='false'
                     onSelect={updateSelection}
-                    onChange={e => setText(e.target.value)}
-                    value={text}>
-            {text}
+                    onChange={e => setTextContext(e.target.value)}
+                    value={textContext} placeholder='Enter context'>
+            {textContext}
           </textarea>
                 <div className={styles.actions}>
                     <div className={styles.tools}>
-                        <button onClick={() => setText('')}>
+                        <button onClick={() => setTextContext('')}>
                             <Eraser size={18}/>
                         </button>
                         <button onClick={() => applyFormat('bold')}>
                             <Bold size={18}/>
                         </button>
-                        <button>
+                        <button onClick={() => applyFormat('italic')}>
                             <Italic size={18}/>
                         </button>
-                        <button>
+                        <button onClick={() => applyFormat('underline')}>
                             <Underline size={18}/>
                         </button>
-                        <button>
+                        <button onClick={() => applyFormat('strikethrough')}>
                             <Strikethrough size={18}/>
                         </button>
                     </div>
-                    {/*<button disabled={isPending} onClick={() => mutate()}>Отправить</button>*/}
-                    <button>Отправить</button>
+                    <button disabled={isPending} onClick={() => mutate()}>Отправить</button>
                 </div>
             </div>
       </Layout>

@@ -1,12 +1,48 @@
+@import 'src/assets/styles/variables';
 
 .list {
     margin: 1.5rem;
 
-    > div {
+    .emailMessage {
+        margin: 1rem;
         padding: 1rem;
-        background-color: #900;
+        background-color: $spaceCadetLight;
         border-radius: 10px;
         overflow: hidden;
-        border: 1px solid #222;
+        border: 1px solid $ultraViolet;
+        
+        .emailInfoUser {
+            padding-bottom: 1rem;
+            color: $lavenderLight;
+        }
+        
+        .messageTitle {
+            display: flex;
+            padding: 0 20px;
+            width: 100%;
+            outline: none;
+            background: $spaceCadetDark;
+            color: $coolGrayLight;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            min-height: 44px;
+            align-items: center;
+        }
+        
+        .messageContext {
+            display: flex;
+            margin-top: 1rem;
+            padding: 0 20px;
+            width: 100%;
+            outline: none;
+            background: $ultraVioletLight;
+            color: $RichBlack;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            min-height: 44px;
+            align-items: center;
+        }
     }
 }

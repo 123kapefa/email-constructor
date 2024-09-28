@@ -14,8 +14,6 @@ p {
 }
 }
 
-
-
 .preview {
   background-color: $ultraVioletLight;
   margin-bottom: 1rem;
@@ -25,12 +23,27 @@ p {
   min-height: 50px;
 }
 
+  .editorTitle {
+    margin: 0;
+    padding: 0.8rem;
+    display: block;
+    width: 100%;
+    outline: none;
+    background: $spaceCadetDark;
+    resize: none;
+    color: $coolGrayLight;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    min-height: 44px;
+}
+
   .editorUser {
     margin: 0.5rem 0;
     padding: 0.8rem;
     display: block;
     width: 460px;
-    font-size: 18px;
+    font-size: 14px;
     color: $lavenderLight;
     border: $ultraViolet solid 1px;
     outline: none;

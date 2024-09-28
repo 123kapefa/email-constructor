@@ -19,7 +19,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 	
 	const isValidPassword = await verify(user.password, password)
 
-	
+	console.log(user)
 	
 	if (user && isValidPassword) {
 		const token = generateToken(user.id)

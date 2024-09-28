@@ -62,32 +62,30 @@ export const sendNewEmail = asyncHandler(async (req, res) => {
 // @access  Private
 export const getEmails = asyncHandler(async (req, res) => {
 	
-	console.log(Number(req.params.id))
-	
 	const userMessages = await prisma.user.findUnique({
 		where: {
 			id: +req.params.id
 		},
 		include: {
-			sentEmails: true,
-			receivedEmails: true,
+			sentEmails: {
+				include: {
+					emailToUser: {
+						select: {
+							email: true}
+					}
+				}
+			},
+			receivedEmails: {
+				include: {
+					emailFromUser: {
+						select: {
+							email: true
+						}
+					}
+				}
+			}
 		}
 	})
-	
-	// const userMessages = await prisma.email.findMany({
-	// 	orderBy: {
-	// 		createdAt: 'desc'
-	// 	},
-	// 	include: {
-	// 		e
-	// 	}
-	// 		where: {
-	// 			id: +req.params.id
-	// 		},
-	// 		select: UserMessages
-	// })
-
-	console.log(userMessages)
 	
 	if (!userMessages)  {
 		res.status(400)
