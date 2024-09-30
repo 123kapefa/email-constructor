@@ -1,14 +1,16 @@
 import parse from 'html-react-parser'
+import { useState } from 'react'
 import { useAuth } from '../../../../hooks/useAuth.js'
 import { emailService } from '../../../../services/email.service.js'
+import SlideButton from '../../../ui-elements/slide-button/SlideButton.jsx'
 import Layout from '../../Layout.jsx'
-//import { emailService } from '../../../../services/email.service.js'
 import styles from './EmailList.module.scss'
 import { useQuery } from '@tanstack/react-query'
 
 export function EmailList() {
 	
 	const { userId } = useAuth()
+	const [typeMessage, setTypeMessage] = useState('second')
 	
 	const { data } = useQuery({
 		queryKey: ['email list'],
@@ -19,20 +21,49 @@ export function EmailList() {
 		<div>
 			<Layout>
 				<h1>Список писем</h1>
+				<SlideButton
+					firstChild={'Входящие'}
+					secondChild={'Исходящие'}
+					type={typeMessage}
+					setType={setTypeMessage}/>
 				<div className={styles.list}>
-					{data?.sentEmails?.map(email => (
-						<div className={styles.emailMessage} key={email.id}>
-							<div className={styles.emailInfoUser}>
-								{ "кому: " + (email.emailToUser.email)}
-							</div>
-							<div className={styles.messageTitle}>
-								{parse(email.title)}
-							</div>
-							<div className={styles.messageContext}>
-								{parse(email.context)}
-							</div>
+					{typeMessage === 'first' ? (
+						<div>
+							<h2>Входящие</h2>
+							{data?.receivedEmails?.map(email => (
+								<div className={styles.emailMessage} key={email.id}>
+									<div className={styles.emailInfoUser}>
+										{ "от кого: " + (email.emailFromUser.email)}
+									</div>
+									<div className={styles.messageTitle}>
+										{parse(email.title)}
+									</div>
+									<div className={styles.messageContext}>
+										{parse(email.context)}
+									</div>
+								</div>
+							))}
 						</div>
-					))}
+					)
+					:
+					(
+						<div>
+							<h2>Исходящие</h2>
+							{data?.sentEmails?.map(email => (
+								<div className={styles.emailMessage} key={email.id}>
+									<div className={styles.emailInfoUser}>
+										{ "кому: " + (email.emailToUser.email)}
+									</div>
+									<div className={styles.messageTitle}>
+										{parse(email.title)}
+									</div>
+									<div className={styles.messageContext}>
+										{parse(email.context)}
+									</div>
+								</div>
+							))}
+						</div>
+					)}
 				</div>
 			</Layout>
 		</div>

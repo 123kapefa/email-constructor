@@ -13,6 +13,28 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 		},
 		select: UserFields
 	})
-
+	
 	res.json(user)
 })
+
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private
+	export const updateUser = asyncHandler(async (req, res) => {
+		
+		const { login, email, password } = req.body
+		
+		const user = await prisma.user.update({
+			where: {
+				id: +req.user.id
+			},
+			data: {
+				login,
+				email,
+				password
+			}
+		})
+		
+		res.json(user)
+	})
+

@@ -10,10 +10,11 @@
 		outline: none;
 		cursor: pointer;
 		font-size: 18px;
+		color: $delftBlueDark;
 		
 		&:hover,
 				&.active {
-					color: $roseWood;
+					color: $RichBlack;
 					margin: 1px 0;
 				}
 	}
@@ -25,14 +26,14 @@
 			animation: opacity 1s;
 			
 			> path {
-				fill: $fireBrick
+				fill: $glaucous
 			}
 		}
 	}
 	
 	.menu {
 		position: absolute;
-		background-color: $lightcoralLight;
+		background-color: $glaucous;
 		padding: 10px;
 		font-size: 18px;
 		box-shadow: $bx-16;
@@ -52,14 +53,24 @@
 		> ul {
 			list-style: none;
 			li {
-				color: $crimsonDark;
 				text-decoration: none;
-				transition: color 0.2s ease;
-
+				transition: margin 0.2s ease;
+				
 				&:hover,
 				&.active {
-					color: $roseWood;
+					color: $RaisinBlackLight;
 					margin: 1px 0;
+				}
+				
+				> a {
+					text-decoration: none;
+					color: $delftBlueDark;
+					transition: color 0.2s ease;
+					&:hover,
+				&.active {
+					color: $RaisinBlackLight;
+					margin: 1px 0;
+				}
 				}
 			}
 		}

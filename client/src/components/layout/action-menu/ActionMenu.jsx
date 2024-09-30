@@ -11,7 +11,7 @@ const ActionMenu = () => {
 	return (
 		<div className={styles.wrapper} ref={ref}>
 			<button onClick={() => setIsOpen(!isOpen)}>
-				{isOpen ? <CgMenuMotion color='#900' size={30} /> : <CgMenu color='#900' size={30} />}
+				{isOpen ? <CgMenuMotion size={30} /> : <CgMenu size={30} />}
 			</button>
 			<Menu isOpen={isOpen} setIsOpen={setIsOpen} />
 		</div>

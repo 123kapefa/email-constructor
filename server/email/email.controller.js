@@ -87,6 +87,8 @@ export const getEmails = asyncHandler(async (req, res) => {
 		}
 	})
 	
+	console.log(userMessages)
+	
 	if (!userMessages)  {
 		res.status(400)
 		throw new Error('Неправильно указан получатель!')

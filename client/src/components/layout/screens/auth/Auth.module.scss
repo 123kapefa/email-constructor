@@ -6,13 +6,14 @@
 	margin: 40px;
 	padding: 1rem;
 	justify-content: center;
+	align-items: center;
 }
 
 .wrapperButtons {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
+	width: 400px;
 	
 	> div {
 		width: 48%;
@@ -21,10 +22,10 @@
 		}
 		&:last-child > button {
 			color: $nightLight;
-			background-color: $lightcoralDark;
+			background-color: $glaucous;
 			transition: opacity 0.15s ease;
 			&:hover {
-				background-color: $indianDark;
+				background-color: $coolGray;
 				opacity: 1;
 			}
 		}

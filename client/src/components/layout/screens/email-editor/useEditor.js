@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 export function useEditor() {
 	const [textUserTo, setTextUserTo] = useState('');
 	const [textTitle, setTextTitle] = useState('')
-	const [textContext, setTextContext] = useState('');
+	const [textContent, setTextContent] = useState('');
 	
 	const [selectionStart, setSelectionStart] = useState(0)
 	const [selectionEnd, setSelectionEnd] = useState(0)
@@ -17,11 +17,11 @@ export function useEditor() {
 	}
 	
 	const applyFormat = (type) => {
-		const beforeText = text.substring(0, selectionStart)
-		const selectedText = text.substring(selectionStart, selectionEnd)
-		const afterText = text.substring(selectionEnd)
+		const beforeText = textContent.substring(0, selectionStart)
+		const selectedText = textContent.substring(selectionStart, selectionEnd)
+		const afterText = textContent.substring(selectionEnd)
 		
-		setText(beforeText + applyStyle(type, selectedText) + afterText)
+		setTextContent(beforeText + applyStyle(type, selectedText) + afterText)
 		
 		if(selectedText.length === 0) return
 	}
@@ -49,8 +49,8 @@ export function useEditor() {
 		setTextUserTo,
 		textTitle,
 		setTextTitle,
-		textContext,
-		setTextContext,
+		textContent,
+		setTextContent,
 		textRef,
 		applyFormat,
 		updateSelection

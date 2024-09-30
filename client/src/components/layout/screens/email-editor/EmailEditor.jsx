@@ -24,8 +24,8 @@ export function EmailEditor() {
         setTextUserTo,
         textTitle,
         setTextTitle,
-        textContext,
-        setTextContext,
+        textContent,
+        setTextContent,
         textRef,
         applyFormat,
         updateSelection
@@ -35,11 +35,11 @@ export function EmailEditor() {
     
     const { mutate, isPending } = useMutation({
 		mutationKey: ['send email'],
-		mutationFn: () => emailService.sendEmail(userId, textUserTo, textTitle, textContext),
+		mutationFn: () => emailService.sendEmail(userId, textUserTo, textTitle, textContent),
 		onSuccess() {
       setTextUserTo('')
       setTextTitle('')
-			setTextContext('')
+			setTextContent('')
       
 			queryClient.refetchQueries({ queryKey: ['email list'] })
 		},
@@ -53,7 +53,7 @@ export function EmailEditor() {
                 <textarea className={styles.editorUser} rows='1' maxLength='40' cols='10' wrap='off' spellCheck='false'onChange={e => setTextUserTo(e.target.value)} value={textUserTo} placeholder='Enter email'>
                 </textarea>
             </div>
-            <div className={styles.preview}>{parse(textContext)}</div>
+            <div className={styles.preview}>{parse(textContent)}</div>
             <div className={styles.card}>
                 <textarea className={styles.editorTitle}
                     rows='1'
@@ -67,13 +67,13 @@ export function EmailEditor() {
                     className={styles.editorMassage}
                     spellCheck='false'
                     onSelect={updateSelection}
-                    onChange={e => setTextContext(e.target.value)}
-                    value={textContext} placeholder='Enter context'>
-            {textContext}
+                    onChange={e => setTextContent(e.target.value)}
+                    value={textContent} placeholder='Enter context'>
+            {textContent}
           </textarea>
                 <div className={styles.actions}>
                     <div className={styles.tools}>
-                        <button onClick={() => setTextContext('')}>
+                        <button onClick={() => setTextContent('')}>
                             <Eraser size={18}/>
                         </button>
                         <button onClick={() => applyFormat('bold')}>

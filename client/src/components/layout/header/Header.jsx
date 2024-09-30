@@ -11,13 +11,6 @@ const Header = () => {
 	
 	return (
 		<header className={styles.header}>
-			{/*{pathname !== '/' || pathname !== '/auth' || !isAuth ? (*/}
-			{/*	<button onClick={() => { navigate('/auth')}}/>*/}
-			{/*) : (<button*/}
-			{/*		onClick={() => {*/}
-			{/*			navigate('/profile')*/}
-			{/*		}}*/}
-			{/*	/>)}*/}
 			{ <ActionMenu/> }
 		</header>
 	)
