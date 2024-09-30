@@ -19,7 +19,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 	
 	const isValidPassword = await verify(user.password, password)
 
-	console.log(user)
+		if (process.env.NODE_ENV === 'development') {
+			console.log(user)
+		}
 	
 	if (user && isValidPassword) {
 		const token = generateToken(user.id)
@@ -33,7 +35,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 export const registerUser = asyncHandler(async (req, res) => {
 	const { login, email, password } = req.body
 
-	console.log(req.body)
+		if (process.env.NODE_ENV === 'development') {
+			console.log(req.body)
+		}
 	
 	const isHaveUser = await prisma.user.findUnique({
 		where: {
@@ -46,9 +50,10 @@ export const registerUser = asyncHandler(async (req, res) => {
 		throw new Error('User already exists')
 	}
 
-	console.log(isHaveUser)
-	console.log({login, email, password})
-	//res.json({login, email, password})
+		if (process.env.NODE_ENV === 'development') {
+			console.log(isHaveUser)
+			console.log({ login, email, password })
+		}
 	
 	const user = await prisma.user.create({
 		data: {

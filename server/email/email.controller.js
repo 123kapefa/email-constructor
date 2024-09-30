@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import process from 'prisma'
 
 import { prisma } from '../prisma.js'
 import { EmailFields, UserFields, UserMessages } from '../utils/user.utils.js'
@@ -9,8 +10,6 @@ import { EmailFields, UserFields, UserMessages } from '../utils/user.utils.js'
 export const sendNewEmail = asyncHandler(async (req, res) => {
 	const { title, context } = req.body
 	
-	console.log(req.params.userIdFrom, req.params.userEmailTo)
-	
 	const userFrom = await prisma.user.findUnique({
 			where: {
 				id: +req.params.userIdFrom
@@ -18,17 +17,12 @@ export const sendNewEmail = asyncHandler(async (req, res) => {
 			select: UserFields
 	})
 	
-		console.log({userFrom})
-	
 	const userTo = await prisma.user.findUnique({
 			where: {
 				email: req.params.userEmailTo
 			},
 			select: UserFields
 	})
-
-	console.log({userTo})
-	console.log({title, context})
 	
 	if (!userTo)  {
 		res.status(400)
@@ -39,8 +33,6 @@ export const sendNewEmail = asyncHandler(async (req, res) => {
 		res.status(400)
 		throw new Error('Неправильно указан отправитель!')
 	}
-
-	console.log(userFrom.id, userTo.id)
 	
 	const email = await prisma.email.create({
 		data: {
@@ -51,8 +43,6 @@ export const sendNewEmail = asyncHandler(async (req, res) => {
 		},
 		select: EmailFields
 	})
-	
-	console.log(email)
 
 	res.json(email)
 })
@@ -86,8 +76,6 @@ export const getEmails = asyncHandler(async (req, res) => {
 			}
 		}
 	})
-	
-	console.log(userMessages)
 	
 	if (!userMessages)  {
 		res.status(400)

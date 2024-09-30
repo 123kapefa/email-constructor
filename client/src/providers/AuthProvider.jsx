@@ -6,7 +6,7 @@ import { TOKEN, UID } from '../app.constans.js'
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
-	const [isAuth, setIsAuth] = useState(!!Cookies.get(TOKEN))
+	const [isAuth, setIsAuth] = useState(!!Cookies.get('token'))
 	const [userId, setUserId] = useState(Cookies.get(UID))
 
 	return (

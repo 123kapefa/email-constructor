@@ -14,7 +14,7 @@ class AuthService {
 			
 				Cookie.set(UID, data.user.id)
 				
-			if (data.token) Cookie.set(TOKEN, data.token)
+			if (data.token) Cookie.set('token', data.token)
 			return data
 			
 			} else {
@@ -26,7 +26,7 @@ class AuthService {
 				
 				Cookie.set(UID, data.user.id)
 			
-			if (data.token) Cookie.set(TOKEN, data.token)
+			if (data.token) Cookie.set('token', data.token)
 				return data
 				
 			}

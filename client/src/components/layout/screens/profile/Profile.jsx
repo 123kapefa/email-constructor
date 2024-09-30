@@ -20,11 +20,11 @@ const Profile = () => {
 				<h1 className={styles.header}>Ваш профиль</h1>
 				{isAuth ? (
 					<div>
-					<div>
+					<div className={styles.infoBlock}>
 						<p>Login:</p>
 						<p>{data?.login}</p>
 					</div>
-					<div>
+					<div className={styles.infoBlock}>
 						<p>Email:</p>
 						<p>{data?.email}</p>
 					</div>

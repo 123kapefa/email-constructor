@@ -19,9 +19,6 @@ export function Home() {
 		      (
 						<div>
 							<p>Новые сообщения</p>
-							<SlideButton
-								firstChild={'Входящие'}
-								secondChild={'Исходящие'}/>
 						</div>
 	        )
 					:
